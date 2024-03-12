@@ -1,6 +1,6 @@
 import {
     NavIdProps, Group, PanelHeader, FormLayoutGroup, FormItem, Textarea,
-    Snackbar, IconButton, SimpleCell, Button
+    Snackbar, IconButton, SimpleCell, Button, usePlatform, Platform
 } from "@vkontakte/vkui";
 import {ResizePanel} from "../components/ResizePanel";
 import React, {useRef} from "react";
@@ -13,6 +13,9 @@ import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {useCatFact} from "../hooks/useCatFact";
 
 export function Facts(props: NavIdProps) {
+
+    const platform = usePlatform();
+    const isVKCOM =  platform === Platform.VKCOM;
 
     const target = useRef<HTMLTextAreaElement>(null);
     const routerNavigator = useRouteNavigator();
@@ -73,13 +76,13 @@ export function Facts(props: NavIdProps) {
                     subtitle="Случайные факты о кошках"
                     after={
                         <>
-                            <IconButton
+                            {isVKCOM && <IconButton
                                 aria-label="Перевести"
                                 disabled={isLoading || !fact.length || fetchTranslate}
                                 onClick={translateText}
                             >
                                 <Icon24HieroglyphCharacterOutline/>
-                            </IconButton>
+                            </IconButton>}
 
                             <IconButton
                                 aria-label="Повторить"
@@ -104,14 +107,14 @@ export function Facts(props: NavIdProps) {
                         />
                     </FormItem>
 
-                    <FormItem>
+                    {isVKCOM && <FormItem>
                         <Textarea
                             rows={4}
                             readOnly={true}
                             value={translate}
                             placeholder="Здесь будет перевод текста на русский"
                         />
-                    </FormItem>
+                    </FormItem>}
                 </FormLayoutGroup>
 
                 <FormItem>
