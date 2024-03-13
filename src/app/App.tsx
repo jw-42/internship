@@ -23,7 +23,7 @@ export function App() {
                 maxWidth={550}
                 style={ isVKCOM ? { marginLeft: 0 } : undefined }
             >
-                <Epic activeStory={activeView ?? "jobs"} tabbar={isVKCOM && <Tabbar/>}>
+                <Epic activeStory={activeView ?? "jobs"} tabbar={!isVKCOM && <Tabbar/>}>
                     <View nav="jobs" activePanel={activePanel ?? "catfact"}>
                         <AgeByName nav="agify" />
                         <CatFact nav="catfact" />
