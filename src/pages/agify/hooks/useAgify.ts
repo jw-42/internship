@@ -1,5 +1,5 @@
+import ApiServices from "../../../shared/api/services";
 import {useQuery} from "@tanstack/react-query";
-import ApiServices from "../services/api.services";
 
 export const useAgify = (name: string) => {
 

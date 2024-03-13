@@ -1,5 +1,5 @@
-import { Panel } from "@vkontakte/vkui";
-import { useEffect, useRef } from "react";
+import {Panel} from "@vkontakte/vkui";
+import {useEffect, useRef} from "react";
 import bridge from "@vkontakte/vk-bridge";
 
 export function ResizePanel(props: any) {

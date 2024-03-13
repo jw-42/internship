@@ -1,18 +1,8 @@
-import {
-    Panel,
-    PanelHeader,
-    SplitCol,
-    Group,
-    SimpleCell,
-    usePlatform, Platform
-} from "@vkontakte/vkui";
-import {
-    Icon24CakeOutline,
-    Icon24PawOutline
-} from "@vkontakte/icons";
-import React from "react";
-import {routers} from "../router";
+import {Group, Panel, PanelHeader, Platform, SimpleCell, SplitCol, usePlatform} from "@vkontakte/vkui";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
+import {AppRoutes} from "../../../app/router/AppRouter";
+import {Icon24CakeOutline, Icon24PawOutline} from "@vkontakte/icons";
+import React from "react";
 
 export function Sidebar() {
 
@@ -29,15 +19,15 @@ export function Sidebar() {
             style={{ marginRight: 0 }}
         >
             <Panel>
-                {!isVKCOM && <PanelHeader/>}
+                {(!isVKCOM) && <PanelHeader/>}
                 <Group>
                     <SimpleCell
-                        onClick={() => routerNavigator.push(routers.facts.getFact)}
+                        onClick={() => routerNavigator.push(AppRoutes.jobs.catfact)}
                         before={<Icon24PawOutline/>}
                     >Факты о кошках</SimpleCell>
 
                     <SimpleCell
-                        onClick={() => routerNavigator.push(routers.age.getByName)}
+                        onClick={() => routerNavigator.push(AppRoutes.jobs.agify)}
                         before={<Icon24CakeOutline/>}
                     >Возраст</SimpleCell>
                 </Group>

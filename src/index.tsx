@@ -1,31 +1,10 @@
-import React from "react";
+import {AppConfig} from "./app/AppConfig";
+import bridge from "@vkontakte/vk-bridge";
+import '@vkontakte/vkui/dist/vkui.css';
 import ReactDOM from "react-dom";
-import App from "./App";
-import {AdaptivityProvider, AppRoot, ConfigProvider} from "@vkontakte/vkui";
-import {RouterProvider} from '@vkontakte/vk-mini-apps-router';
-import {router} from "./router";
-import {NotFound} from "./panels/NotFound";
+import React from "react";
 import "./style.css";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            refetchOnWindowFocus: false,
-            staleTime: 15 * 60 * 1000,
-            retry: 3
-        }
-    }
-});
+void bridge.send("VKWebAppInit");
 
-ReactDOM.render(<ConfigProvider>
-    <AdaptivityProvider>
-        <AppRoot>
-            <RouterProvider router={router} notFound={<NotFound/>}>
-                <QueryClientProvider client={queryClient}>
-                    <App />
-                </QueryClientProvider>
-            </RouterProvider>
-        </AppRoot>
-    </AdaptivityProvider>
-</ConfigProvider>, document.getElementById("root"));
+ReactDOM.render(<AppConfig/>, document.getElementById("root"));
